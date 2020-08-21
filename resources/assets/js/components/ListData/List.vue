@@ -43,7 +43,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-6" style="text-align: right;"></div>
+            <slot name="table_filters"></slot>
             <div class="col-md-3">
               <div class="input-group mb-3">
                 <input
@@ -56,6 +56,7 @@
                 />
               </div>
             </div>
+            <div class="col-md-6" style="text-align: right;"></div>
           </div>
         </div>
         <!-- /.c  ard-header -->
@@ -265,6 +266,10 @@ export default {
       type: String,
       required: true,
     },
+    tableSort: {
+      type: String,
+      required: true,
+    },
     headers: {
       type: Array,
       required: true,
@@ -304,7 +309,7 @@ export default {
       timeout: null,
       query: {
         search: "",
-        sort_by: "buffer_postings.id",
+        sort_by: this.tableSort || "id",
         order_by: "DESC",
         per_page: 5,
         page: 1,
@@ -347,6 +352,7 @@ export default {
         path: data.path,
       };
       this.paginator = paginator;
+
       //console.log(paginator);
     },
     fatchPaginateData(url) {
@@ -364,6 +370,7 @@ export default {
           others_query: this.others_query,
         });
         if (response) {
+          // console.log(response);
           this.currentPage = response.data.current_page;
           this.dataList = response.data.data;
           this.loader = !this.loader;
@@ -383,9 +390,6 @@ export default {
   },
   mounted() {
     this.perPgeQuery(this.url);
-    // axios.post("/get_all_group").then((response) => {
-    //   console.log(response.data);
-    // });
   },
 };
 </script>

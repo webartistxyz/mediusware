@@ -48,6 +48,13 @@ class HistoryController extends Controller
                 'users.timezone AS timezone',
                 'users.name AS user_name'
             );
+
+        if (!empty($request->others_query["group_id"])) {
+            $query->where('buffer_postings.group_id', $request->others_query["group_id"]);
+        }
+        if (!empty($request->others_query["filter_date"])) {
+            $query->where(DB::raw('date(buffer_postings.sent_at)'), $request->others_query["filter_date"]);
+        }
         Search::searchQuery($query, $columns, $searchData);
         $query->orderByRaw('' . $sort_by . ' ' . $order_by . '');
         $data = $query->paginate($request->per_page);
