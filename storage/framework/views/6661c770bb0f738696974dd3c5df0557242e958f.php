@@ -15,7 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 
-    
     <script type="text/javascript">
         window.Laravel = <?php echo json_encode([
 			'csrfToken' => csrf_token(),
@@ -230,7 +229,7 @@ if($user_meta['temp_user'] === true){
             <div class="sk-circle10 sk-circle"></div>
             <div class="sk-circle11 sk-circle"></div>
             <div class="sk-circle12 sk-circle"></div>
-           
+
         </div>
     </div>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -280,11 +279,7 @@ if($user_meta['temp_user'] === true){
             </div>
         </div>
     </nav>
-    <style type="text/css">
-        .dropdown-menu.navd:before {
-            content: none !important;
-        }
-    </style>
+    
     <nav class="navbar left-navbar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -320,6 +315,8 @@ if($user_meta['temp_user'] === true){
 
                     <li <?php if($route=='history'): ?> class="active" <?php endif; ?>><a href="<?php echo e(url('/history')); ?>"> <i
                                     class="fa fa-home"></i> History</a></li>
+
+
                 <?php endif; ?>
             </ul>
         </div><!-- /.container-fluid -->
@@ -620,18 +617,18 @@ if($user_meta['temp_subs'] === true){
 
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         var homePostingFrequencyTarget = document.getElementById("homePostingFrequency");
         if (homePostingFrequencyTarget !== null) {
             var freqParam = {
-                _token : $('meta[name="csrf-token"]').attr('content')
+                _token: $('meta[name="csrf-token"]').attr('content')
             };
             $.ajax({
                 type: "POST",
                 url: '<?php echo e(route('homePostingFrequency')); ?>',
                 data: freqParam,
-                success: function(res) {
-                    if(res.status === 2000){
+                success: function (res) {
+                    if (res.status === 2000) {
                         var ctx2 = document.getElementById("homePostingFrequency");
                         if (ctx2 !== null) {
                             var homePostingFrequency = new Chart(homePostingFrequencyTarget, {

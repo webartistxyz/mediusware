@@ -281,11 +281,11 @@ if($user_meta['temp_user'] === true){
             </div>
         </div>
     </nav>
-    <style type="text/css">
+    {{-- <style type="text/css">
         .dropdown-menu.navd:before {
             content: none !important;
         }
-    </style>
+    </style> --}}
     <nav class="navbar left-navbar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -321,6 +321,8 @@ if($user_meta['temp_user'] === true){
 
                     <li @if ($route=='history') class="active" @endif><a href="{{ url('/history') }}"> <i
                                     class="fa fa-home"></i> History</a></li>
+
+
                 @endif
             </ul>
         </div><!-- /.container-fluid -->

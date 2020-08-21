@@ -112,7 +112,6 @@ class PagesController extends Controller
         $user = \Bulkly\User::find(\Auth::id());
         $user->rebrandly_domain = $request->rebrandly_domain;
         $user->save();
-
     }
 
 
@@ -125,12 +124,12 @@ class PagesController extends Controller
         $user->verification_token = $data['verification_token'];
         $user->save();
 
-        
-        $mail = Mail::send('mails.confirmation',  $data, function($message) use ($data){
-            $message->to($data['email']);            
+
+        $mail = Mail::send('mails.confirmation',  $data, function ($message) use ($data) {
+            $message->to($data['email']);
             $message->subject('Registration Confirmation');
         });
-        
+
 
 
         return view('auth.confirmation')->with('method', 'post');
@@ -183,6 +182,4 @@ class PagesController extends Controller
     {
         return view('auth.friday');
     }
-
-
 }
